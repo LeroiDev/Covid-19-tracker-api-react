@@ -1,17 +1,17 @@
-.card {
+.card__one {
   overflow-y: scroll;
   height: 400px;
 }
 
-.card::-webkit-scrollbar {
+.card__one::-webkit-scrollbar {
   width: 0.4rem;
 }
 
-.card::-webkit-scrollbar-track {
+.card__one::-webkit-scrollbar-track {
   box-shadow: inset 0 0 6px rgba(39, 165, 214, 0.3);
 }
 
-.card::-webkit-scrollbar-thumb {
+.card__one::-webkit-scrollbar-thumb {
   background-color: rgb(118, 148, 230);
   outline: 1px solid rgb(62, 224, 230);
 }
