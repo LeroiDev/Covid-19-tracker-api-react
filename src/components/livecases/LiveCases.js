@@ -1,18 +1,21 @@
 import React from 'react'
 import {Card, CardContent} from '@material-ui/core';
+import Table from './Table';
+import './livecases.css';
 
-const LiveCases = () => {
+const LiveCases = ({tableData}) => {
   return (
-    <>
-    <Card>
-      <CardContent>
+    <div className="card">
+    <Card >
+      <CardContent >
       <h3>LIVE CASES BY COUNTRY</h3> 
-        {/* TABLE */}
+        <Table className="table" countries={tableData}>
+        </Table>
         <h3>WORLDWIDE new CASES</h3>
         {/* GRAPH */}
       </CardContent>
       </Card>
-    </>
+    </div>
   )
 }
 
