@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import './linegraph.css';
 import {Line} from 'react-chartjs-2';
 import numeral from 'numeral';
 
@@ -41,7 +40,6 @@ const LineGraph = ({casesType="cases"}) => {
   return (
     // no initial data passed need a conditional here to make provision.
     <div>
-      <h1>Graph needs data format</h1>
       {data?.length > 0 && <Line 
         options={options}
         data={{

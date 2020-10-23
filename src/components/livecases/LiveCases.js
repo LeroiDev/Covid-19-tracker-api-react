@@ -15,7 +15,8 @@ const LiveCases = ({tableData}) => {
       </CardContent>
       <div className="card__two">
         <CardContent>
-        <h3>WORLDWIDE new CASES</h3>
+        <h3>GLOBAL CASES</h3>
+        <h2>CHART</h2>
         <LineGraph />
         </CardContent>
         </div>
