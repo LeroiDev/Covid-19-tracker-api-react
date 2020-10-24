@@ -1,6 +1,6 @@
 .card__one {
   overflow-y: scroll;
-  height: 660px;
+  height: 415px;
 }
 
 .card__one::-webkit-scrollbar {

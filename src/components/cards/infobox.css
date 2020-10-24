@@ -1,0 +1,40 @@
+.infoBox {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.8rem;
+}
+.infoBox--selected {
+  border-top: 10px solid greenyellow;
+}
+.infoBox--selected.infoBox--isRed {
+  border-top: 10px solid red;
+}
+.infoBox--selected.infoBox--isBlack {
+  border-top: 10px solid black;
+}
+.infoBox:last-child {
+  margin-right: 0;
+}
+.infoBox__cases {
+  color: #cc1034;
+  font-weight: 600;
+  font-size: 1.75rem;
+  margin-bottom: 0.4rem;
+}
+.infoBox__total {
+  color: #6c757d !important;
+  font-weight: 700 !important;
+  font-size: 0.8rem !important;
+  margin-top: 8px !important;
+}
+.infoBox__content {
+  text-align: center;
+}
+.infoBox:hover {
+  transition: transform 300ms ease-in;
+  transform: scale(1.06);
+  background-color: #eee;
+  cursor: pointer;
+}

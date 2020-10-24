@@ -1,22 +1,35 @@
 import React from 'react'
 import './cards.css';
 import InfoBox from './InfoBox';
+import {formatStat} from '../../utility/util';
 
-const Cards = ({countryInfo}) => {
+const Cards = ({casesType,countryInfo,setCasesType}) => {
 
   return (
     <section>
-      <InfoBox title={ countryInfo.country === 'undefined' ? `${countryInfo.country} Cases` : "Global Cases"} 
-      cases={`${countryInfo.todayCases} Cases Today`}
-        total={countryInfo.cases}
+      <InfoBox
+      isRed
+      active={casesType==="cases"}
+      onClick ={e=>setCasesType('cases')}
+      title={countryInfo.country && countryInfo.country !== 'undefined' ? `${countryInfo.country} Cases` : "Cases"} 
+      cases={formatStat(countryInfo.todayCases) + " today"}
+        total={formatStat(countryInfo.cases)}
       />
-      <InfoBox title={ countryInfo.country === 'undefined' ? `${countryInfo.country} Recovered` : "Global Recovered Cases"} 
-      cases={`${countryInfo.todayRecovered} Recovered Today`}
-        total={countryInfo.recovered}
+      <InfoBox 
+      active={casesType==="recovered"}
+
+      onClick ={e=>setCasesType('recovered')}
+      title={countryInfo.country && countryInfo.country !== 'undefined' ? `${countryInfo.country} Recovered` : "Recovered Cases"} 
+      cases={formatStat(countryInfo.todayRecovered) + " today"}
+        total={formatStat(countryInfo.recovered)}
       />
-      <InfoBox title={countryInfo.country === 'undefined' ? `${countryInfo.country} Deaths` : "Global Deaths"} 
-      cases={`${countryInfo.todayDeaths} deaths today`}
-        total={countryInfo.deaths}
+      <InfoBox 
+      isBlack
+      active={casesType==="deaths"}
+      onClick ={e=>setCasesType('deaths')}
+      title={countryInfo.country && countryInfo.country !== 'undefined' ? `${countryInfo.country} Deaths` : "Deaths"} 
+      cases={formatStat(countryInfo.todayDeaths) +" today"}
+        total={formatStat(countryInfo.deaths)}
       />
     </section>
   )

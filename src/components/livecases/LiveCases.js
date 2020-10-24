@@ -4,7 +4,7 @@ import Table from './Table';
 import './livecases.css';
 import LineGraph from './LineGraph';
 
-const LiveCases = ({tableData}) => {
+const LiveCases = ({casesType,tableData}) => {
   return (
     <div className="card">
     <Card >
@@ -15,9 +15,8 @@ const LiveCases = ({tableData}) => {
       </CardContent>
       <div className="card__two">
         <CardContent>
-        <h3>GLOBAL CASES</h3>
-        <h2>CHART</h2>
-        <LineGraph />
+  <h3>GLOBAL {casesType}</h3>
+        <LineGraph casesType={casesType} />
         </CardContent>
         </div>
       </Card>

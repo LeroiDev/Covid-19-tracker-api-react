@@ -8,12 +8,20 @@ import LiveCases from './components/livecases/LiveCases';
 import axios from 'axios';
 // utility class
 import {sortData} from './utility/util';
+// leaflet headache css
+import "leaflet/dist/leaflet.css";
 
 const App = () => {
   const [countries, setCountries] = useState([]);
   const [country,setCountry] = useState('global');
   const [countryInfo,setCountryInfo] = useState({});
   const [tableData, setTableData] = useState([]);
+  // leaflet headache to get working
+  const [mapCenter,setMapCenter] = useState({lat:34.80746, lng: -40.4796});
+  const [mapZoom,setMapZoom] = useState(1);
+  // state for MAP component all countries data not just the name and value
+  const[mapCountries,setMapCountries] = useState([]);
+  const [casesType,setCasesType] = useState('cases');
 
 // header drop down list
   useEffect(()=>{
@@ -26,6 +34,7 @@ const App = () => {
         setCountries(countries);
         const sortedData = sortData(res.data)
         setTableData(sortedData);
+        setMapCountries(res.data);
     }
       fetchData();
 },[])
@@ -38,20 +47,32 @@ setCountryInfo(data.data)
 fetchData();
 },[])
 
+// ONCHANGE DROP DOWN COUNTRY SELECTION - note map and cards depend on this
   const countryChangeHandler=async(e)=>{
     setCountry(e.target.value);
     const data = e.target.value === 'global' ? await axios.get("https://disease.sh/v3/covid-19/all") : await axios.get(`https://disease.sh/v3/covid-19/countries/${e.target.value}`);
     setCountryInfo(data.data);
+
+    if(e.target.value !== 'global'){
+      setMapCenter([data.data.countryInfo.lat , data.data.countryInfo.long])
+      console.log(data.data.countryInfo); 
     }
+    else{
+        setMapCenter({lat:34.80746, lng: -40.4796})
+    } 
+    setMapZoom(3);
+    }
+
+// returned jsx end of functions 
   return (
     <div className="app">
     <div className="app__left">
     <Header country={country} countries={countries} countryChangeHandler={countryChangeHandler}/>
-    <Cards countryInfo={countryInfo}/>
-    <Map/>
+    <Cards casesType={casesType} setCasesType={setCasesType} countryInfo={countryInfo}/>
+    <Map casesType={casesType} countries={mapCountries} center={mapCenter} zoom={mapZoom}/>
     </div>
     <div className="app__right">
-      <LiveCases tableData={tableData}/>
+      <LiveCases casesType={casesType} tableData={tableData}/>
     </div>
     </div>
   );
