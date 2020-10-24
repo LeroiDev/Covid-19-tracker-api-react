@@ -10,6 +10,7 @@ import axios from 'axios';
 import {sortData} from './utility/util';
 // leaflet headache css
 import "leaflet/dist/leaflet.css";
+import Footer from './components/footer/Footer';
 
 const App = () => {
   const [countries, setCountries] = useState([]);
@@ -60,11 +61,12 @@ fetchData();
     else{
         setMapCenter({lat:34.80746, lng: -40.4796})
     } 
-    setMapZoom(3);
+    setMapZoom(4);
     }
 
 // returned jsx end of functions 
   return (
+    <div className="container">
     <div className="app">
     <div className="app__left">
     <Header country={country} countries={countries} countryChangeHandler={countryChangeHandler}/>
@@ -74,6 +76,8 @@ fetchData();
     <div className="app__right">
       <LiveCases casesType={casesType} tableData={tableData}/>
     </div>
+    </div>
+    <Footer/>
     </div>
   );
 }
